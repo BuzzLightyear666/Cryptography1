@@ -1,0 +1,38 @@
+def xor_encrypt(input_text, key_tuple, shift):
+    encrypted_text = [] 
+
+    for i in range(len(input_text)):
+        key_byte = key_tuple[i % len(key_tuple)]
+        encrypted_byte = (ord(input_text[i]) + shift) ^ key_byte
+        encrypted_text.append(encrypted_byte)
+
+    encrypted_text_str = ''.join(chr(byte) for byte in encrypted_text)
+
+    return encrypted_text_str
+
+def xor_decrypt(encrypted_text, key_tuple, shift):
+    decrypted_text = []
+
+    for i in range(len(encrypted_text)):
+        key_byte = key_tuple[i % len(key_tuple)]
+        decrypted_byte = chr((ord(encrypted_text[i]) ^ key_byte) - shift)
+        decrypted_text.append(decrypted_byte)
+
+    decrypted_text_str = ''.join(decrypted_text)
+
+    return decrypted_text_str
+
+def main(): 
+    while True:                                        
+        input_text = input("Введіть вхідний текст: ")
+        key_tuple = (52, 3, 0) 
+        shift = int(input("Введіть сдвиг строки: "))
+
+        encrypted_text = xor_encrypt(input_text, key_tuple, shift) 
+        print("Зашифрований текст:", encrypted_text) 
+
+        decrypted_text = xor_decrypt(encrypted_text, key_tuple, shift)
+        print("Розшифрований текст:", decrypted_text) 
+
+if __name__ == "__main__":
+    main()
