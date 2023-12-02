@@ -3,8 +3,8 @@ def xor_encrypt(input_text, key_tuple, shift):
     encrypted_text = [] 
 
     for i in range(len(input_text)):                                 # Використовуеться для кожного введеного символу 
-        key_byte = key_tuple[i % len(key_tuple)]                     # Визначається байт ключа для поточного символу, використовуючи операцію циклічного звернення до кортежу
-        encrypted_byte = (ord(input_text[i]) + shift) ^ key_byte     # Шифрування символа з використанням XOR, ASCII код символу збільшується на shift перед застосуванням XOR з байтом ключа
+        key_byte = key_tuple[i % len(key_tuple)]                     # Визначається байт ключа для поточного символу
+        encrypted_byte = (ord(input_text[i]) + shift) ^ key_byte     # Шифрування символа 
         encrypted_text.append(encrypted_byte)                        # Додавання зашифрованих байтів у список
 
     encrypted_text_str = ''.join(chr(byte) for byte in encrypted_text)  # Перетворення списку зашифрованих байтів в строку
@@ -16,8 +16,8 @@ def xor_decrypt(encrypted_text, key_tuple, shift):
     decrypted_text = []
 
     for i in range(len(encrypted_text)):                            # Використовуеться для кожного введеного символу
-        key_byte = key_tuple[i % len(key_tuple)]                    # Визначається байт ключа для поточного символу, використовуючи операцію циклічного звернення до кортежу
-        decrypted_byte = chr((ord(encrypted_text[i]) ^ key_byte) - shift)    # Кожен символ перетворюється на ASCII-код, з використанням XOR, результат зменшуеться на shift
+        key_byte = key_tuple[i % len(key_tuple)]                    # Визначається байт ключа для поточного символу
+        decrypted_byte = chr((ord(encrypted_text[i]) ^ key_byte) - shift)    # Розшифрування символа 
         decrypted_text.append(decrypted_byte)                       # Розшифрований символ додається до списку
 
     decrypted_text_str = ''.join(decrypted_text)                    # Перетворення списку розшифрованих байтів в строку
